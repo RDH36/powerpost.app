@@ -1,6 +1,5 @@
 import { authConfig } from "@/src/pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
 
 export const getAuthSession = () => {
   return getServerSession(authConfig);
@@ -8,7 +7,9 @@ export const getAuthSession = () => {
 
 export const requireAuth = async () => {
   const session = await getAuthSession();
-  if (!session?.user) {
-    redirect("/");
+  if (session?.user) {
+    return session.user;
   }
+
+  throw new Error("Need to be authenticated");
 };

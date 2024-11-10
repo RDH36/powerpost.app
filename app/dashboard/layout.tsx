@@ -8,7 +8,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex flex-col gap-3">
+    <main className="flex h-full flex-col gap-3 bg-background">
       <Header />
       <nav className="px-3">
         <ul className="flex space-x-4">
